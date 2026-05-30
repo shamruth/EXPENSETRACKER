@@ -338,7 +338,55 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SUPABASE_URL  = 'https://pcqmxytgypzjplmfrdfn.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjcW14eXRneXB6anBsbWZyZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDUwNjksImV4cCI6MjA5NTYyMTA2OX0.q4QTgpM-LNVkEgsckbPW-naMIc7nljJmvEjT9Gq5O1c';
-const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+/* ── Custom storage adapter: window.storage → localStorage fallback ──
+   Supabase needs to persist the session token across page reloads.
+   In Claude artifacts localStorage is blocked, so we route through
+   window.storage (artifact persistent store) and fall back to
+   localStorage when running outside the artifact (e.g. downloaded file).
+── */
+const _sbStore = (() => {
+  let _ws = false; /* whether window.storage is available */
+
+  /* probe once, synchronously best-effort */
+  (async () => {
+    try {
+      await window.storage.set('_sb_probe', '1');
+      await window.storage.delete('_sb_probe');
+      _ws = true;
+    } catch { _ws = false; }
+  })();
+
+  return {
+    getItem: async (key) => {
+      if (_ws) {
+        try { const r = await window.storage.get(key); return r?.value ?? null; } catch {}
+      }
+      try { return localStorage.getItem(key); } catch { return null; }
+    },
+    setItem: async (key, value) => {
+      if (_ws) {
+        try { await window.storage.set(key, value); return; } catch {}
+      }
+      try { localStorage.setItem(key, value); } catch {}
+    },
+    removeItem: async (key) => {
+      if (_ws) {
+        try { await window.storage.delete(key); return; } catch {}
+      }
+      try { localStorage.removeItem(key); } catch {}
+    },
+  };
+})();
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: {
+    storage: _sbStore,
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: false,
+  }
+});
 
 /* ══════════════════════════════
    STATE
@@ -752,12 +800,30 @@ function renderCatBreakdown() {
 ══════════════════════════════ */
 loadTheme();
 
-/* Listen for auth state changes (login, logout, token refresh) */
+/* onAuthStateChange fires with event='INITIAL_SESSION' on first load —
+   this is the single source of truth for session restore on reload.
+   We no longer call getSession() separately, which avoids the race
+   where both paths call onSession() and double-trigger fetchExpenses. */
+let _booted = false;
 DB.onAuthChange(async (session) => {
+  /* Guard: only let onSession run once per actual state change.
+     Supabase may fire multiple events on load; we deduplicate by
+     checking whether the user id actually changed. */
+  const incomingId = session?.user?.id ?? null;
+  const currentId  = currentUser?.id ?? null;
+  if (_booted && incomingId === currentId) return;
+  _booted = true;
   await onSession(session);
 });
 
-/* Check existing session on load */
-const initialSession = await DB.getSession();
-await onSession(initialSession);
+/* Safety fallback: if onAuthChange never fires within 4 s
+   (e.g. network offline, storage adapter slow), stop the spinner
+   and show the login screen so the user isn't stuck loading forever. */
+setTimeout(() => {
+  if (!_booted) {
+    _booted = true;
+    onSession(null);
+  }
+}, 4000);
+
 </script>
