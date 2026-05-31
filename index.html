@@ -9,7 +9,7 @@
   --amount-color:#993C1D;--input-bg:#FFFFFF;--input-border:rgba(0,0,0,0.18);
   --shadow-sm:0 1px 3px rgba(0,0,0,0.06);--radius-md:8px;--radius-lg:12px;
 }
-[data-theme="dark"] {
+[data-theme="dark"]{
   --bg-page:#111110;--bg-primary:#1C1C1A;--bg-secondary:#242422;--bg-tertiary:#2C2C2A;
   --text-primary:#F0EEE8;--text-secondary:#A8A69E;--text-hint:#6E6C66;
   --border-lo:rgba(255,255,255,0.06);--border-mid:rgba(255,255,255,0.11);--border-hi:rgba(255,255,255,0.18);
@@ -25,16 +25,11 @@ input,select{background:var(--input-bg);color:var(--text-primary);border:0.5px s
 input:focus,select:focus{border-color:var(--accent)}
 select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .theme-btn{width:36px;height:36px;border-radius:var(--radius-md);border:0.5px solid var(--border-mid);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.theme-btn:hover{background:var(--bg-tertiary)}
-.theme-btn i{font-size:17px;transition:none}
-
-/* ── Loading screen ── */
+.theme-btn:hover{background:var(--bg-tertiary)}.theme-btn i{font-size:17px;transition:none}
 #loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:12px}
 .spinner{width:28px;height:28px;border:2.5px solid var(--border-mid);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-size:14px;color:var(--text-secondary)}
-
-/* ── Auth ── */
 .auth-topbar{display:flex;justify-content:flex-end;padding:0.5rem 0.75rem 0}
 .auth-wrap{max-width:360px;margin:1.5rem auto;padding:0 0.75rem}
 .auth-logo{display:flex;align-items:center;gap:10px;margin-bottom:1.75rem;justify-content:center}
@@ -59,9 +54,12 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
 .auth-err.show{display:block}
 .auth-ok{font-size:12px;color:var(--accent-text);margin-bottom:10px;padding:8px 10px;background:var(--accent-bg);border-radius:var(--radius-md);border:0.5px solid var(--accent-border);display:none}
 .auth-ok.show{display:block}
+.users-list{margin-top:1rem;border-top:0.5px solid var(--border-lo);padding-top:1rem}
+.users-list-label{font-size:11px;color:var(--text-secondary);margin-bottom:8px;font-weight:500}
+.user-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;background:var(--bg-secondary);border:0.5px solid var(--border-mid);font-size:12px;color:var(--text-secondary);margin:3px;cursor:pointer}
+.user-pill:hover{background:var(--bg-tertiary)}
+.user-pill i{font-size:13px}
 .auth-note{font-size:11px;color:var(--text-hint);margin-top:10px;text-align:center}
-
-/* ── App ── */
 .app-wrap{max-width:680px;margin:0 auto;padding:0.75rem 0.75rem 2rem}
 .header{display:flex;align-items:center;gap:10px;padding:0 0 1rem;border-bottom:0.5px solid var(--border-lo);margin-bottom:1rem}
 .logo{width:34px;height:34px;border-radius:var(--radius-md);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:0.5px solid var(--accent-border)}
@@ -71,8 +69,7 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
 .app-sub{font-size:12px;color:var(--text-secondary)}
 .header-actions{display:flex;align-items:center;gap:6px}
 .logout-btn{padding:7px 12px;border:0.5px solid var(--border-mid);background:transparent;border-radius:var(--radius-md);font-size:13px;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:inherit;min-height:36px}
-.logout-btn:hover{background:var(--bg-secondary)}
-.logout-btn i{font-size:14px;transition:none}
+.logout-btn:hover{background:var(--bg-secondary)}.logout-btn i{font-size:14px;transition:none}
 .user-badge{display:flex;align-items:center;gap:6px;padding:5px 10px;background:var(--accent-bg);border-radius:20px;margin-bottom:1rem;border:0.5px solid var(--accent-border)}
 .user-badge i{font-size:14px;color:var(--accent)}
 .user-badge span{font-size:12px;color:var(--accent-text);font-weight:500}
@@ -139,30 +136,17 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
 .section-title{font-size:14px;font-weight:500;margin-bottom:14px;color:var(--text-primary)}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:white;padding:11px 22px;border-radius:var(--radius-md);font-size:14px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100;white-space:nowrap}
 .toast.show{opacity:1}
-@media(max-width:480px){
-  .form-row,.live-dt-row,.past-dt-row{grid-template-columns:1fr}
-  .tab span{display:none}.tab i{font-size:18px}
-  .summary-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media(max-width:480px){.form-row,.live-dt-row,.past-dt-row{grid-template-columns:1fr}.tab span{display:none}.tab i{font-size:18px}.summary-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:500px){.summary-grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 
-<h2 style="position:absolute;width:1px;height:1px;overflow:hidden">Expense Saver</h2>
+<div id="loading-screen"><div class="spinner"></div><div class="loading-text">Loading…</div></div>
 
-<!-- LOADING -->
-<div id="loading-screen">
-  <div class="spinner"></div>
-  <div class="loading-text">Connecting to database…</div>
-</div>
-
-<!-- AUTH -->
 <div id="auth-screen" style="display:none">
-  <div class="auth-topbar">
-    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme"><i class="ti ti-moon" id="theme-icon-auth"></i></button>
-  </div>
+  <div class="auth-topbar"><button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme"><i class="ti ti-moon" id="theme-icon-auth"></i></button></div>
   <div class="auth-wrap">
     <div class="auth-logo">
-      <div class="auth-logo-icon"><i class="ti ti-wallet" aria-hidden="true"></i></div>
+      <div class="auth-logo-icon"><i class="ti ti-wallet"></i></div>
       <div><div class="auth-title">Expense Saver</div><div class="auth-sub">Track every rupee, always</div></div>
     </div>
     <div class="auth-card">
@@ -170,103 +154,65 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
         <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
         <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
       </div>
-      <!-- LOGIN -->
       <div id="auth-login" class="auth-panel active">
         <div id="login-err" class="auth-err"></div>
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" autocomplete="email" autocapitalize="none" onkeydown="if(event.key==='Enter')document.getElementById('login-pass').focus()" />
-        </div>
-        <div class="form-group">
-          <label for="login-pass">Password</label>
-          <div class="input-wrap">
-            <input type="password" id="login-pass" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
-            <button class="eye-btn" onclick="toggleEye('login-pass',this)" aria-label="Show password"><i class="ti ti-eye"></i></button>
-          </div>
-        </div>
+        <div class="form-group"><label>Username</label><input type="text" id="login-user" autocomplete="username" autocapitalize="none" onkeydown="if(event.key==='Enter')document.getElementById('login-pass').focus()"/></div>
+        <div class="form-group"><label>Password</label><div class="input-wrap"><input type="password" id="login-pass" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/><button class="eye-btn" onclick="toggleEye('login-pass',this)"><i class="ti ti-eye"></i></button></div></div>
         <button class="auth-btn" id="login-btn" onclick="doLogin()">Login</button>
-        <p class="auth-note">Powered by Supabase — data persists globally across all devices</p>
+        <div id="users-list-wrap" class="users-list" style="display:none"><div class="users-list-label">Registered users — click to fill</div><div id="users-list"></div></div>
+        <p class="auth-note">Data stored in Supabase — syncs across all devices</p>
       </div>
-      <!-- REGISTER -->
       <div id="auth-register" class="auth-panel">
         <div id="reg-err" class="auth-err"></div>
         <div id="reg-ok" class="auth-ok"></div>
-        <div class="form-group">
-          <label for="reg-email">Email</label>
-          <input type="email" id="reg-email" autocomplete="email" autocapitalize="none" />
-        </div>
-        <div class="form-group">
-          <label for="reg-pass">Password</label>
-          <div class="input-wrap">
-            <input type="password" id="reg-pass" autocomplete="new-password" />
-            <button class="eye-btn" onclick="toggleEye('reg-pass',this)" aria-label="Show password"><i class="ti ti-eye"></i></button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="reg-pass2">Confirm password</label>
-          <div class="input-wrap">
-            <input type="password" id="reg-pass2" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()" />
-            <button class="eye-btn" onclick="toggleEye('reg-pass2',this)" aria-label="Show password"><i class="ti ti-eye"></i></button>
-          </div>
-        </div>
+        <div class="form-group"><label>Username</label><input type="text" id="reg-user" autocomplete="username" autocapitalize="none"/></div>
+        <div class="form-group"><label>Password</label><div class="input-wrap"><input type="password" id="reg-pass" autocomplete="new-password"/><button class="eye-btn" onclick="toggleEye('reg-pass',this)"><i class="ti ti-eye"></i></button></div></div>
+        <div class="form-group"><label>Confirm password</label><div class="input-wrap"><input type="password" id="reg-pass2" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()"/><button class="eye-btn" onclick="toggleEye('reg-pass2',this)"><i class="ti ti-eye"></i></button></div></div>
         <button class="auth-btn" id="reg-btn" onclick="doRegister()">Create account</button>
-        <p class="auth-note">A confirmation email will be sent to verify your address</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- APP -->
 <div id="app-screen" style="display:none">
   <div class="app-wrap">
     <div class="header">
-      <div class="logo"><i class="ti ti-wallet" aria-hidden="true"></i></div>
-      <div class="header-info">
-        <div class="app-title">Expense Saver</div>
-        <div class="app-sub">Track every rupee, always</div>
-      </div>
+      <div class="logo"><i class="ti ti-wallet"></i></div>
+      <div class="header-info"><div class="app-title">Expense Saver</div><div class="app-sub">Track every rupee, always</div></div>
       <div class="header-actions">
-        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme"><i class="ti ti-moon" id="theme-icon-app"></i></button>
-        <button class="logout-btn" onclick="doLogout()"><i class="ti ti-logout" aria-hidden="true"></i><span>Logout</span></button>
+        <button class="theme-btn" onclick="toggleTheme()"><i class="ti ti-moon" id="theme-icon-app"></i></button>
+        <button class="logout-btn" onclick="doLogout()"><i class="ti ti-logout"></i><span>Logout</span></button>
       </div>
     </div>
-    <div class="user-badge">
-      <i class="ti ti-user-circle" aria-hidden="true"></i>
-      <span id="logged-user-label">—</span>
-    </div>
+    <div class="user-badge"><i class="ti ti-user-circle"></i><span id="logged-user-label">—</span></div>
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('add')"><i class="ti ti-plus" aria-hidden="true"></i><span> Add</span></button>
-      <button class="tab" onclick="switchTab('records')"><i class="ti ti-list" aria-hidden="true"></i><span> Records</span></button>
-      <button class="tab" onclick="switchTab('reports')"><i class="ti ti-chart-bar" aria-hidden="true"></i><span> Reports</span></button>
+      <button class="tab active" onclick="switchTab('add')"><i class="ti ti-plus"></i><span> Add</span></button>
+      <button class="tab" onclick="switchTab('records')"><i class="ti ti-list"></i><span> Records</span></button>
+      <button class="tab" onclick="switchTab('reports')"><i class="ti ti-chart-bar"></i><span> Reports</span></button>
     </div>
-
-    <!-- ADD -->
     <div id="panel-add" class="panel active">
       <div class="card">
         <div class="datetime-toggle">
-          <i class="ti ti-clock-edit" aria-hidden="true" style="font-size:17px;color:var(--text-secondary)"></i>
+          <i class="ti ti-clock-edit" style="font-size:17px;color:var(--text-secondary)"></i>
           <span class="toggle-label">Add as past expense</span>
-          <label class="toggle-switch" aria-label="Toggle past expense mode">
-            <input type="checkbox" id="past-toggle" onchange="togglePastMode()">
-            <span class="toggle-slider"></span>
-          </label>
+          <label class="toggle-switch"><input type="checkbox" id="past-toggle" onchange="togglePastMode()"><span class="toggle-slider"></span></label>
         </div>
         <div id="live-dt-section" class="live-dt-row">
-          <div class="datetime-badge"><i class="ti ti-calendar" aria-hidden="true"></i><div><div class="dt-label">Date</div><div class="dt-value" id="live-date">—</div></div></div>
-          <div class="datetime-badge"><i class="ti ti-clock" aria-hidden="true"></i><div><div class="dt-label">Time</div><div class="dt-value" id="live-time">—</div></div></div>
+          <div class="datetime-badge"><i class="ti ti-calendar"></i><div><div class="dt-label">Date</div><div class="dt-value" id="live-date">—</div></div></div>
+          <div class="datetime-badge"><i class="ti ti-clock"></i><div><div class="dt-label">Time</div><div class="dt-value" id="live-time">—</div></div></div>
         </div>
         <div id="past-dt-section" style="display:none">
-          <div class="past-badge"><i class="ti ti-history" aria-hidden="true"></i> Setting a custom date &amp; time</div>
+          <div class="past-badge"><i class="ti ti-history"></i> Setting a custom date &amp; time</div>
           <div class="past-dt-row">
-            <div class="fg"><label for="past-date">Date</label><input type="date" id="past-date" /></div>
-            <div class="fg"><label for="past-time">Time</label><input type="time" id="past-time" /></div>
+            <div class="fg"><label>Date</label><input type="date" id="past-date"/></div>
+            <div class="fg"><label>Time</label><input type="time" id="past-time"/></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="fg"><label for="item-name">Item name</label><input type="text" id="item-name" autocomplete="off" /></div>
-          <div class="fg"><label for="item-amount">Amount (₹)</label><input type="number" id="item-amount" min="0" step="0.01" inputmode="decimal" /></div>
+          <div class="fg"><label>Item name</label><input type="text" id="item-name" autocomplete="off"/></div>
+          <div class="fg"><label>Amount (₹)</label><input type="number" id="item-amount" min="0" step="0.01" inputmode="decimal"/></div>
         </div>
-        <div class="fg" style="margin-bottom:12px"><label for="item-desc">Description (optional)</label><input type="text" id="item-desc" autocomplete="off" /></div>
+        <div class="fg" style="margin-bottom:12px"><label>Description (optional)</label><input type="text" id="item-desc" autocomplete="off"/></div>
         <div class="fg" style="margin-bottom:14px">
           <label>Category</label>
           <div class="cat-chips">
@@ -279,28 +225,16 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
             <div class="cat-chip" onclick="selectCat(this,'Other')">📌 Other</div>
           </div>
         </div>
-        <button class="add-btn" id="add-expense-btn" onclick="addExpense()"><i class="ti ti-plus" aria-hidden="true"></i> Add Expense</button>
+        <button class="add-btn" id="add-expense-btn" onclick="addExpense()"><i class="ti ti-plus"></i> Add Expense</button>
       </div>
     </div>
-
-    <!-- RECORDS -->
     <div id="panel-records" class="panel">
       <div class="filter-row">
-        <select id="filter-period" onchange="renderRecords()">
-          <option value="all">All time</option><option value="today">Today</option>
-          <option value="week">This week</option><option value="month">This month</option><option value="year">This year</option>
-        </select>
-        <select id="filter-cat" onchange="renderRecords()">
-          <option value="all">All categories</option><option value="Food">Food</option>
-          <option value="Drinks">Drinks</option><option value="Transport">Transport</option>
-          <option value="Shopping">Shopping</option><option value="Entertainment">Entertainment</option>
-          <option value="Health">Health</option><option value="Other">Other</option>
-        </select>
+        <select id="filter-period" onchange="renderRecords()"><option value="all">All time</option><option value="today">Today</option><option value="week">This week</option><option value="month">This month</option><option value="year">This year</option></select>
+        <select id="filter-cat" onchange="renderRecords()"><option value="all">All categories</option><option value="Food">Food</option><option value="Drinks">Drinks</option><option value="Transport">Transport</option><option value="Shopping">Shopping</option><option value="Entertainment">Entertainment</option><option value="Health">Health</option><option value="Other">Other</option></select>
       </div>
-      <div class="card" id="records-container"><div class="empty-state"><i class="ti ti-receipt-off" aria-hidden="true"></i>No expenses yet.</div></div>
+      <div class="card" id="records-container"><div class="empty-state"><i class="ti ti-receipt-off"></i>No expenses yet.</div></div>
     </div>
-
-    <!-- REPORTS -->
     <div id="panel-reports" class="panel">
       <div class="summary-grid">
         <div class="sum-card"><div class="sum-label">Today</div><div class="sum-value" id="s-today">₹0</div></div>
@@ -309,521 +243,457 @@ label{font-size:12px;color:var(--text-secondary);font-weight:500;letter-spacing:
         <div class="sum-card"><div class="sum-label">This year</div><div class="sum-value" id="s-year">₹0</div></div>
       </div>
       <div class="card">
-        <div class="chart-controls">
-          <label>View</label>
-          <select id="chart-view" onchange="renderChart()">
-            <option value="daily">Daily (last 7 days)</option>
-            <option value="weekly">Weekly (last 8 weeks)</option>
-            <option value="monthly">Monthly (this year)</option>
-          </select>
+        <div class="chart-controls"><label>View</label>
+          <select id="chart-view" onchange="renderChart()"><option value="daily">Daily (last 7 days)</option><option value="weekly">Weekly (last 8 weeks)</option><option value="monthly">Monthly (this year)</option></select>
         </div>
         <div class="chart-wrap"><canvas id="main-chart"></canvas></div>
       </div>
-      <div class="card">
-        <div class="section-title">Category breakdown</div>
-        <div class="cat-breakdown" id="cat-breakdown"><div style="font-size:13px;color:var(--text-secondary)">Add expenses to see breakdown</div></div>
-      </div>
+      <div class="card"><div class="section-title">Category breakdown</div><div class="cat-breakdown" id="cat-breakdown"><div style="font-size:13px;color:var(--text-secondary)">Add expenses to see breakdown</div></div></div>
     </div>
   </div>
 </div>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="toast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script type="module">
-/* ══════════════════════════════
+<script>
+/* ══════════════════════════════════════════════════════
    SUPABASE CONFIG
-══════════════════════════════ */
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+   No Supabase Auth — we use plain REST + anon key.
+   Session (logged-in username) is stored in window.storage
+   with localStorage fallback, which we fully control.
+══════════════════════════════════════════════════════ */
+const SB_URL  = 'https://pcqmxytgypzjplmfrdfn.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjcW14eXRneXB6anBsbWZyZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDUwNjksImV4cCI6MjA5NTYyMTA2OX0.q4QTgpM-LNVkEgsckbPW-naMIc7nljJmvEjT9Gq5O1c';
 
-const SUPABASE_URL  = 'https://pcqmxytgypzjplmfrdfn.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjcW14eXRneXB6anBsbWZyZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDUwNjksImV4cCI6MjA5NTYyMTA2OX0.q4QTgpM-LNVkEgsckbPW-naMIc7nljJmvEjT9Gq5O1c';
-
-/* ── Custom storage adapter: window.storage → localStorage fallback ──
-   Supabase needs to persist the session token across page reloads.
-   In Claude artifacts localStorage is blocked, so we route through
-   window.storage (artifact persistent store) and fall back to
-   localStorage when running outside the artifact (e.g. downloaded file).
-── */
-const _sbStore = (() => {
-  let _ws = false; /* whether window.storage is available */
-
-  /* probe once, synchronously best-effort */
-  (async () => {
-    try {
-      await window.storage.set('_sb_probe', '1');
-      await window.storage.delete('_sb_probe');
-      _ws = true;
-    } catch { _ws = false; }
-  })();
-
-  return {
-    getItem: async (key) => {
-      if (_ws) {
-        try { const r = await window.storage.get(key); return r?.value ?? null; } catch {}
-      }
-      try { return localStorage.getItem(key); } catch { return null; }
-    },
-    setItem: async (key, value) => {
-      if (_ws) {
-        try { await window.storage.set(key, value); return; } catch {}
-      }
-      try { localStorage.setItem(key, value); } catch {}
-    },
-    removeItem: async (key) => {
-      if (_ws) {
-        try { await window.storage.delete(key); return; } catch {}
-      }
-      try { localStorage.removeItem(key); } catch {}
-    },
+/* Plain REST helper — no SDK, no localStorage dependency */
+async function sbFetch(method, path, body) {
+  const opts = {
+    method,
+    headers: { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + SB_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=representation' }
   };
-})();
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(SB_URL + '/rest/v1/' + path, opts);
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+  if (!res.ok) throw new Error((data?.message || data?.error || text || res.status));
+  return data;
+}
 
-const sb = createClient(SUPABASE_URL, SUPABASE_ANON, {
-  auth: {
-    storage: _sbStore,
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: false,
+/* ══════════════════════════════════════════════════════
+   SIMPLE STORAGE — window.storage with localStorage fallback
+   Used ONLY for: session (logged-in username) + theme preference.
+   All real data (users, expenses) lives in Supabase.
+══════════════════════════════════════════════════════ */
+let _ws = false;
+async function _initStore() {
+  try { await window.storage.set('__probe','1'); await window.storage.delete('__probe'); _ws = true; }
+  catch { _ws = false; }
+}
+async function storeGet(k) {
+  if (_ws) { try { const r = await window.storage.get(k); return r?.value ?? null; } catch {} }
+  try { return localStorage.getItem(k); } catch { return null; }
+}
+async function storeSet(k, v) {
+  if (_ws) { try { await window.storage.set(k, v); return; } catch {} }
+  try { localStorage.setItem(k, v); } catch {}
+}
+async function storeDel(k) {
+  if (_ws) { try { await window.storage.delete(k); return; } catch {} }
+  try { localStorage.removeItem(k); } catch {}
+}
+
+/* ══════════════════════════════════════════════════════
+   DB SERVICE — all Supabase calls go through here.
+   Users table schema (create once in Supabase SQL editor):
+
+   create table if not exists users (
+     id uuid primary key default gen_random_uuid(),
+     username text unique not null,
+     password_hash text not null,
+     created_at timestamptz default now()
+   );
+   alter table users enable row level security;
+   create policy "anon full access" on users for all using (true) with check (true);
+
+   create table if not exists expenses (
+     id uuid primary key default gen_random_uuid(),
+     user_id uuid not null,
+     name text not null,
+     amount numeric(12,2) not null,
+     description text default '',
+     category text not null,
+     date text not null,
+     time text not null,
+     date_label text not null,
+     ts bigint not null,
+     is_past boolean default false,
+     created_at timestamptz default now()
+   );
+   alter table expenses enable row level security;
+   create policy "anon full access" on expenses for all using (true) with check (true);
+
+══════════════════════════════════════════════════════ */
+const DB = {
+  async getUser(username) {
+    try {
+      const rows = await sbFetch('GET', `users?username=eq.${encodeURIComponent(username)}&limit=1`);
+      return rows?.[0] ?? null;
+    } catch { return null; }
+  },
+  async createUser(username, passwordHash) {
+    try {
+      const rows = await sbFetch('POST', 'users', { username, password_hash: passwordHash });
+      return Array.isArray(rows) ? rows[0] : rows;
+    } catch(e) { throw e; }
+  },
+  async getAllUsernames() {
+    try {
+      const rows = await sbFetch('GET', 'users?select=username&order=username');
+      return (rows || []).map(r => r.username);
+    } catch { return []; }
+  },
+  async fetchExpenses(userId) {
+    try {
+      const rows = await sbFetch('GET', `expenses?user_id=eq.${userId}&order=ts.desc`);
+      return (rows || []).map(rowToLocal);
+    } catch { return []; }
+  },
+  async insertExpense(userId, entry) {
+    try {
+      const rows = await sbFetch('POST', 'expenses', localToRow(userId, entry));
+      const row = Array.isArray(rows) ? rows[0] : rows;
+      return rowToLocal(row);
+    } catch(e) { console.error('[DB] insert', e); return null; }
+  },
+  async deleteExpense(id) {
+    try { await sbFetch('DELETE', `expenses?id=eq.${id}`); return true; }
+    catch(e) { console.error('[DB] delete', e); return false; }
   }
-});
+};
 
-/* ══════════════════════════════
+function localToRow(userId, e) {
+  return { user_id:userId, name:e.name, amount:e.amount, description:e.desc||'', category:e.category, date:e.date, time:e.time, date_label:e.dateLabel, ts:e.ts, is_past:e.isPast||false };
+}
+function rowToLocal(r) {
+  return { id:r.id, name:r.name, amount:parseFloat(r.amount), desc:r.description||'', category:r.category, date:r.date, time:r.time, dateLabel:r.date_label, ts:Number(r.ts), isPast:r.is_past };
+}
+
+/* ══════════════════════════════════════════════════════
+   PASSWORD HASH — djb2, consistent, non-reversible
+══════════════════════════════════════════════════════ */
+function hashPwd(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+
+/* ══════════════════════════════════════════════════════
    STATE
-══════════════════════════════ */
+══════════════════════════════════════════════════════ */
 const CAT_COLORS = {Food:'#1D9E75',Drinks:'#BA7517',Transport:'#7F77DD',Shopping:'#D85A30',Entertainment:'#D4537E',Health:'#378ADD',Other:'#888780'};
-let currentUser   = null;
-let expenses      = [];
-let selectedCat   = 'Food';
-let chartInstance = null;
-let isPastMode    = false;
-let clockTimer    = null;
-let currentTheme  = 'light';
+let currentUser  = null; /* { id, username } */
+let expenses     = [];
+let selectedCat  = 'Food';
+let chartInst    = null;
+let isPastMode   = false;
+let clockTimer   = null;
+let currentTheme = 'light';
 
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    THEME
-══════════════════════════════ */
+══════════════════════════════════════════════════════ */
 function applyTheme(t) {
   currentTheme = t;
   document.documentElement.setAttribute('data-theme', t);
   const icon = t === 'dark' ? 'ti-sun' : 'ti-moon';
-  ['theme-icon-auth','theme-icon-app'].forEach(id => { const el=document.getElementById(id); if(el) el.className='ti '+icon; });
-  if (chartInstance) renderChart();
+  ['theme-icon-auth','theme-icon-app'].forEach(id => { const el = document.getElementById(id); if (el) el.className = 'ti ' + icon; });
+  if (chartInst) renderChart();
 }
-window.toggleTheme = async function() {
+function toggleTheme() {
   const next = currentTheme === 'light' ? 'dark' : 'light';
   applyTheme(next);
-  try { localStorage.setItem('expsaver-theme', next); } catch {}
-};
-function loadTheme() {
-  try {
-    const saved = localStorage.getItem('expsaver-theme');
-    if (saved) { applyTheme(saved); return; }
-  } catch {}
-  applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  storeSet('expsaver-theme', next);
+}
+async function loadTheme() {
+  const saved = await storeGet('expsaver-theme');
+  if (saved) { applyTheme(saved); return; }
+  applyTheme(window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
 }
 
-/* ══════════════════════════════
-   DB SERVICE  (global — all calls go through Supabase)
-══════════════════════════════ */
-const DB = {
-  /* AUTH */
-  async signUp(email, password) {
-    const { data, error } = await sb.auth.signUp({ email, password });
-    return { data, error };
-  },
-  async signIn(email, password) {
-    const { data, error } = await sb.auth.signInWithPassword({ email, password });
-    return { data, error };
-  },
-  async signOut() {
-    await sb.auth.signOut();
-  },
-  async getSession() {
-    const { data } = await sb.auth.getSession();
-    return data.session;
-  },
-  onAuthChange(cb) {
-    sb.auth.onAuthStateChange((_event, session) => cb(session));
-  },
-
-  /* EXPENSES */
-  async fetchExpenses(userId) {
-    const { data, error } = await sb
-      .from('expenses')
-      .select('*')
-      .eq('user_id', userId)
-      .order('ts', { ascending: false });
-    if (error) { console.error('[DB] fetchExpenses', error); return []; }
-    return data.map(rowToLocal);
-  },
-  async insertExpense(userId, entry) {
-    const { data, error } = await sb
-      .from('expenses')
-      .insert([localToRow(userId, entry)])
-      .select()
-      .single();
-    if (error) { console.error('[DB] insertExpense', error); return null; }
-    return rowToLocal(data);
-  },
-  async deleteExpense(id) {
-    const { error } = await sb.from('expenses').delete().eq('id', id);
-    if (error) { console.error('[DB] deleteExpense', error); return false; }
-    return true;
-  }
-};
-
-/* row ↔ local mappers */
-function localToRow(userId, e) {
-  return {
-    user_id:    userId,
-    name:       e.name,
-    amount:     e.amount,
-    description: e.desc || '',
-    category:   e.category,
-    date:       e.date,
-    time:       e.time,
-    date_label: e.dateLabel,
-    ts:         e.ts,
-    is_past:    e.isPast || false
-  };
-}
-function rowToLocal(r) {
-  return {
-    id:        r.id,
-    name:      r.name,
-    amount:    parseFloat(r.amount),
-    desc:      r.description || '',
-    category:  r.category,
-    date:      r.date,
-    time:      r.time,
-    dateLabel: r.date_label,
-    ts:        r.ts,
-    isPast:    r.is_past
-  };
-}
-
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    AUTH UI
-══════════════════════════════ */
+══════════════════════════════════════════════════════ */
 function toggleEye(inputId, btn) {
-  const inp = document.getElementById(inputId);
-  const show = inp.type === 'password';
+  const inp = document.getElementById(inputId), show = inp.type === 'password';
   inp.type = show ? 'text' : 'password';
   btn.querySelector('i').className = show ? 'ti ti-eye-off' : 'ti ti-eye';
 }
-window.toggleEye = toggleEye;
-
 function switchAuthTab(tab) {
   document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', tab==='login'?i===0:i===1));
   document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('auth-'+tab).classList.add('active');
-  clearAuthMessages();
+  clearMsgs();
 }
-window.switchAuthTab = switchAuthTab;
+function clearMsgs() { ['login-err','reg-err','reg-ok'].forEach(id => { const el=document.getElementById(id); if(el){el.textContent='';el.classList.remove('show');} }); }
+function showErr(id,msg) { const el=document.getElementById(id); if(el){el.textContent=msg;el.classList.add('show');} }
+function showOk(id,msg)  { const el=document.getElementById(id); if(el){el.textContent=msg;el.classList.add('show');} }
+function setBusy(b) { ['login-btn','reg-btn'].forEach(id => { const el=document.getElementById(id); if(el) el.disabled=b; }); }
 
-function clearAuthMessages() {
-  ['login-err','reg-err','reg-ok'].forEach(id => { const el=document.getElementById(id); if(el){el.textContent='';el.classList.remove('show');} });
-}
-function showErr(id, msg) { const el=document.getElementById(id); if(!el) return; el.textContent=msg; el.classList.add('show'); }
-function showOk(id, msg)  { const el=document.getElementById(id); if(!el) return; el.textContent=msg; el.classList.add('show'); }
-function setAuthBusy(b)   { ['login-btn','reg-btn'].forEach(id => { const el=document.getElementById(id); if(el) el.disabled=b; }); }
-
-window.doLogin = async function() {
-  const email = (document.getElementById('login-email').value||'').trim().toLowerCase();
-  const pass  = document.getElementById('login-pass').value||'';
-  clearAuthMessages();
-  if (!email) { showErr('login-err','Enter your email.'); return; }
-  if (!pass)  { showErr('login-err','Enter your password.'); return; }
-  setAuthBusy(true);
-  const { error } = await DB.signIn(email, pass);
-  setAuthBusy(false);
-  if (error) { showErr('login-err', friendlyAuthError(error)); }
-  /* session handled by onAuthChange listener */
-};
-
-window.doRegister = async function() {
-  const email = (document.getElementById('reg-email').value||'').trim().toLowerCase();
-  const pass  = document.getElementById('reg-pass').value||'';
-  const pass2 = document.getElementById('reg-pass2').value||'';
-  clearAuthMessages();
-  if (!email)       { showErr('reg-err','Email is required.'); return; }
-  if (!pass)        { showErr('reg-err','Password is required.'); return; }
-  if (pass.length<6){ showErr('reg-err','Password must be at least 6 characters.'); return; }
-  if (pass!==pass2) { showErr('reg-err','Passwords do not match.'); return; }
-  setAuthBusy(true);
-  const { error } = await DB.signUp(email, pass);
-  setAuthBusy(false);
-  if (error) { showErr('reg-err', friendlyAuthError(error)); return; }
-  showOk('reg-ok','Account created! Check your email to confirm, then log in.');
-  document.getElementById('reg-email').value='';
-  document.getElementById('reg-pass').value='';
-  document.getElementById('reg-pass2').value='';
-};
-
-function friendlyAuthError(err) {
-  const msg = (err.message||'').toLowerCase();
-  if (msg.includes('invalid login'))   return 'Incorrect email or password.';
-  if (msg.includes('already registered')) return 'That email is already registered.';
-  if (msg.includes('email not confirmed')) return 'Please confirm your email first.';
-  if (msg.includes('network'))         return 'Network error — check your connection.';
-  return err.message || 'Something went wrong. Try again.';
+async function doLogin() {
+  const u = (document.getElementById('login-user').value||'').trim().toLowerCase();
+  const p = document.getElementById('login-pass').value||'';
+  clearMsgs();
+  if (!u) { showErr('login-err','Enter your username.'); return; }
+  if (!p) { showErr('login-err','Enter your password.'); return; }
+  setBusy(true);
+  const user = await DB.getUser(u);
+  setBusy(false);
+  if (!user)                         { showErr('login-err','Username not found.'); return; }
+  if (user.password_hash !== hashPwd(p)) { showErr('login-err','Incorrect password.'); return; }
+  await loginUser({ id: user.id, username: user.username });
 }
 
-window.doLogout = async function() {
-  stopClock();
-  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-  await DB.signOut();
-  /* onAuthChange will handle UI switch */
-};
-
-/* ══════════════════════════════
-   SESSION → UI ROUTING
-══════════════════════════════ */
-async function onSession(session) {
-  if (session) {
-    currentUser = session.user;
-    show('app-screen');
-    hide('auth-screen');
-    hide('loading-screen');
-    document.getElementById('logged-user-label').textContent = currentUser.email;
-    expenses = await DB.fetchExpenses(currentUser.id);
-    startClock();
-    switchTab('add');
-  } else {
-    currentUser = null;
-    expenses    = [];
-    stopClock();
-    hide('app-screen');
-    show('auth-screen');
-    hide('loading-screen');
+async function doRegister() {
+  const u  = (document.getElementById('reg-user').value||'').trim().toLowerCase();
+  const p  = document.getElementById('reg-pass').value||'';
+  const p2 = document.getElementById('reg-pass2').value||'';
+  clearMsgs();
+  if (!u)                       { showErr('reg-err','Username is required.'); return; }
+  if (u.length < 3)             { showErr('reg-err','Username must be at least 3 characters.'); return; }
+  if (!/^[a-z0-9_]+$/.test(u)) { showErr('reg-err','Only letters, numbers, underscores.'); return; }
+  if (!p)                       { showErr('reg-err','Password is required.'); return; }
+  if (p.length < 4)             { showErr('reg-err','Password must be at least 4 characters.'); return; }
+  if (p !== p2)                 { showErr('reg-err','Passwords do not match.'); return; }
+  setBusy(true);
+  const existing = await DB.getUser(u);
+  if (existing) { setBusy(false); showErr('reg-err','Username already taken.'); return; }
+  try {
+    const user = await DB.createUser(u, hashPwd(p));
+    setBusy(false);
+    showOk('reg-ok','Account created! You can now log in.');
+    ['reg-user','reg-pass','reg-pass2'].forEach(id => document.getElementById(id).value='');
+    refreshUsersList();
+  } catch(e) {
+    setBusy(false);
+    showErr('reg-err', e.message?.includes('unique') ? 'Username already taken.' : 'Error: ' + e.message);
   }
 }
 
-function show(id) { document.getElementById(id).style.display='block'; }
-function hide(id) { document.getElementById(id).style.display='none'; }
+async function loginUser(user) {
+  currentUser = user;
+  await storeSet('expsaver-session', JSON.stringify(user));
+  expenses = await DB.fetchExpenses(user.id);
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display  = 'block';
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('logged-user-label').textContent = 'Logged in as ' + user.username;
+  startClock();
+  switchTab('add');
+}
 
-/* ══════════════════════════════
-   CLOCK
-══════════════════════════════ */
+async function doLogout() {
+  currentUser = null; expenses = [];
+  stopClock();
+  await storeDel('expsaver-session');
+  if (chartInst) { chartInst.destroy(); chartInst = null; }
+  document.getElementById('app-screen').style.display  = 'none';
+  document.getElementById('auth-screen').style.display = 'block';
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+  clearMsgs();
+  refreshUsersList();
+}
+
+async function refreshUsersList() {
+  const names = await DB.getAllUsernames();
+  const wrap = document.getElementById('users-list-wrap');
+  const list = document.getElementById('users-list');
+  if (!names.length) { wrap.style.display='none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = names.map(n =>
+    `<span class="user-pill" onclick="document.getElementById('login-user').value='${n}';document.getElementById('login-pass').focus()"><i class="ti ti-user"></i>${n}</span>`
+  ).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   CLOCK / TOAST / TABS
+══════════════════════════════════════════════════════ */
 function updateClock() {
-  const now=new Date();
-  const de=document.getElementById('live-date'); const te=document.getElementById('live-time');
-  if(de) de.textContent=now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-  if(te) te.textContent=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const now = new Date();
+  const de = document.getElementById('live-date'), te = document.getElementById('live-time');
+  if (de) de.textContent = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  if (te) te.textContent = now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
-function startClock() { stopClock(); updateClock(); clockTimer=setInterval(updateClock,1000); }
-function stopClock()  { if(clockTimer){clearInterval(clockTimer);clockTimer=null;} }
+function startClock() { stopClock(); updateClock(); clockTimer = setInterval(updateClock,1000); }
+function stopClock()  { if (clockTimer) { clearInterval(clockTimer); clockTimer = null; } }
 
-/* ══════════════════════════════
-   TOAST
-══════════════════════════════ */
-let toastTimer=null;
-function showToast(msg, isError) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.style.background=isError?'#A32D2D':'#1D9E75';
+let toastT = null;
+function showToast(msg, err) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.background = err ? '#A32D2D' : '#1D9E75';
   t.classList.add('show');
-  if(toastTimer) clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2400);
+  if (toastT) clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-/* ══════════════════════════════
-   TABS
-══════════════════════════════ */
 function switchTab(tab) {
   const tabs=['add','records','reports'], idx=tabs.indexOf(tab);
   document.querySelectorAll('.tab').forEach((t,i)  => t.classList.toggle('active',i===idx));
   document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active',i===idx));
-  if(tab==='records') renderRecords();
-  if(tab==='reports') { renderSummary(); renderChart(); renderCatBreakdown(); }
+  if (tab==='records') renderRecords();
+  if (tab==='reports') { renderSummary(); renderChart(); renderCatBreakdown(); }
 }
-window.switchTab=switchTab;
 
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    ADD EXPENSE
-══════════════════════════════ */
-window.togglePastMode = function() {
-  isPastMode=document.getElementById('past-toggle').checked;
-  document.getElementById('live-dt-section').style.display=isPastMode?'none':'grid';
-  document.getElementById('past-dt-section').style.display=isPastMode?'block':'none';
-  if(isPastMode){const now=new Date();document.getElementById('past-date').value=now.toISOString().split('T')[0];document.getElementById('past-time').value=now.toTimeString().slice(0,5);}
-};
-
-window.selectCat = function(el, cat) {
-  document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected'); selectedCat=cat;
-};
-
-window.addExpense = async function() {
-  const name  =(document.getElementById('item-name').value||'').trim();
-  const raw   =document.getElementById('item-amount').value;
-  const amount=parseFloat(raw);
-  const desc  =(document.getElementById('item-desc').value||'').trim();
-  if(!name)                         { showToast('Enter an item name.',true); return; }
-  if(!raw||isNaN(amount)||amount<=0){ showToast('Enter a valid amount.',true); return; }
-
-  let entryDate,entryDateLabel,entryTime,entryTs,isPast=false;
-  if(isPastMode){
+══════════════════════════════════════════════════════ */
+function togglePastMode() {
+  isPastMode = document.getElementById('past-toggle').checked;
+  document.getElementById('live-dt-section').style.display = isPastMode ? 'none' : 'grid';
+  document.getElementById('past-dt-section').style.display = isPastMode ? 'block' : 'none';
+  if (isPastMode) { const n=new Date(); document.getElementById('past-date').value=n.toISOString().split('T')[0]; document.getElementById('past-time').value=n.toTimeString().slice(0,5); }
+}
+function selectCat(el, cat) {
+  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected'); selectedCat = cat;
+}
+async function addExpense() {
+  const name   = (document.getElementById('item-name').value||'').trim();
+  const raw    = document.getElementById('item-amount').value;
+  const amount = parseFloat(raw);
+  const desc   = (document.getElementById('item-desc').value||'').trim();
+  if (!name)                          { showToast('Enter an item name.',true); return; }
+  if (!raw||isNaN(amount)||amount<=0) { showToast('Enter a valid amount.',true); return; }
+  let date,dateLabel,time,ts,isPast=false;
+  if (isPastMode) {
     const pd=document.getElementById('past-date').value, pt=document.getElementById('past-time').value;
-    if(!pd||!pt){ showToast('Set both date and time.',true); return; }
-    const dt=new Date(pd+'T'+pt);
-    if(isNaN(dt.getTime())){ showToast('Invalid date or time.',true); return; }
-    isPast=dt<new Date(); entryDate=pd; entryTime=pt;
-    entryDateLabel=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); entryTs=dt.getTime();
+    if (!pd||!pt) { showToast('Set both date and time.',true); return; }
+    const dt=new Date(pd+'T'+pt); if(isNaN(dt.getTime())){showToast('Invalid date/time.',true);return;}
+    isPast=dt<new Date(); date=pd; time=pt; dateLabel=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); ts=dt.getTime();
   } else {
-    const now=new Date();
-    entryDate=now.toISOString().split('T')[0];
-    entryTime=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-    entryDateLabel=now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); entryTs=now.getTime();
+    const now=new Date(); date=now.toISOString().split('T')[0]; time=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    dateLabel=now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); ts=now.getTime();
   }
-
-  const btn=document.getElementById('add-expense-btn'); btn.disabled=true;
-  const entry={name,amount,desc,category:selectedCat,date:entryDate,time:entryTime,dateLabel:entryDateLabel,ts:entryTs,isPast};
-  const saved=await DB.insertExpense(currentUser.id, entry);
+  const btn = document.getElementById('add-expense-btn'); btn.disabled=true;
+  const saved = await DB.insertExpense(currentUser.id, {name,amount,desc,category:selectedCat,date,time,dateLabel,ts,isPast});
   btn.disabled=false;
-
-  if(!saved){ showToast('Save failed — check connection.',true); return; }
+  if (!saved) { showToast('Save failed — check connection.',true); return; }
   expenses.unshift(saved);
   document.getElementById('item-name').value='';
   document.getElementById('item-amount').value='';
   document.getElementById('item-desc').value='';
   showToast(isPast?'Past expense recorded!':'Expense added!');
-};
+}
 
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    RECORDS
-══════════════════════════════ */
+══════════════════════════════════════════════════════ */
 function getFiltered() {
   const period=document.getElementById('filter-period')?.value||'all';
   const cat=document.getElementById('filter-cat')?.value||'all';
   const now=new Date(), today=now.toISOString().split('T')[0];
-  return expenses.filter(e=>{
-    if(cat!=='all'&&e.category!==cat) return false;
-    if(period==='today') return e.date===today;
-    if(period==='week'){ const s=new Date(now);s.setDate(now.getDate()-6);s.setHours(0,0,0,0);return new Date(e.ts)>=s; }
-    if(period==='month'){ const ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');return e.date.startsWith(ym); }
-    if(period==='year') return e.date.startsWith(''+now.getFullYear());
+  return expenses.filter(e => {
+    if (cat!=='all'&&e.category!==cat) return false;
+    if (period==='today') return e.date===today;
+    if (period==='week')  { const s=new Date(now);s.setDate(now.getDate()-6);s.setHours(0,0,0,0);return new Date(e.ts)>=s; }
+    if (period==='month') { const ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');return e.date.startsWith(ym); }
+    if (period==='year')  return e.date.startsWith(''+now.getFullYear());
     return true;
   });
 }
-
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function renderRecords() {
-  const filtered=getFiltered(), container=document.getElementById('records-container');
-  if(!filtered.length){ container.innerHTML='<div class="empty-state"><i class="ti ti-receipt-off" aria-hidden="true"></i>No expenses found.</div>'; return; }
-  const total=filtered.reduce((s,e)=>s+e.amount,0);
-  const rows=filtered.map(e=>{
-    const col=CAT_COLORS[e.category]||'#888';
-    return `<tr>
-      <td style="width:35%"><div class="item-name">${esc(e.name)}${e.isPast?'<span class="past-entry-tag">past</span>':''}</div>${e.desc?`<div class="item-desc">${esc(e.desc)}</div>`:''}</td>
-      <td style="width:16%"><span class="cat-badge" style="background:${col}22;color:${col};border:0.5px solid ${col}44">${esc(e.category)}</span></td>
-      <td style="width:18%;font-size:12px;color:var(--text-secondary)">${esc(e.dateLabel)}</td>
-      <td style="width:13%;font-size:12px;color:var(--text-secondary)">${esc(e.time)}</td>
-      <td style="width:14%" class="amount-cell">₹${e.amount.toLocaleString('en-IN',{maximumFractionDigits:2})}</td>
-      <td style="width:4%"><button class="delete-btn" data-id="${esc(String(e.id))}" aria-label="Delete"><i class="ti ti-trash" aria-hidden="true"></i></button></td>
-    </tr>`;
-  }).join('');
-  container.innerHTML=`<div class="records-scroll"><table class="expense-table">
+  const f=getFiltered(), c=document.getElementById('records-container');
+  if (!f.length) { c.innerHTML='<div class="empty-state"><i class="ti ti-receipt-off"></i>No expenses found.</div>'; return; }
+  const total=f.reduce((s,e)=>s+e.amount,0);
+  c.innerHTML=`<div class="records-scroll"><table class="expense-table">
     <thead><tr><th>Item</th><th>Category</th><th>Date</th><th>Time</th><th style="text-align:right">Amount</th><th></th></tr></thead>
-    <tbody>${rows}</tbody>
-    <tfoot><tr class="total-row"><td colspan="4">Total (${filtered.length} item${filtered.length!==1?'s':''})</td><td style="text-align:right;color:var(--amount-color)">₹${total.toLocaleString('en-IN',{maximumFractionDigits:2})}</td><td></td></tr></tfoot>
+    <tbody>${f.map(e=>{const col=CAT_COLORS[e.category]||'#888';return`<tr>
+      <td><div class="item-name">${esc(e.name)}${e.isPast?'<span class="past-entry-tag">past</span>':''}</div>${e.desc?`<div class="item-desc">${esc(e.desc)}</div>`:''}</td>
+      <td><span class="cat-badge" style="background:${col}22;color:${col};border:0.5px solid ${col}44">${esc(e.category)}</span></td>
+      <td style="font-size:12px;color:var(--text-secondary)">${esc(e.dateLabel)}</td>
+      <td style="font-size:12px;color:var(--text-secondary)">${esc(e.time)}</td>
+      <td class="amount-cell">₹${e.amount.toLocaleString('en-IN',{maximumFractionDigits:2})}</td>
+      <td><button class="delete-btn" data-id="${esc(String(e.id))}"><i class="ti ti-trash"></i></button></td>
+    </tr>`;}).join('')}</tbody>
+    <tfoot><tr class="total-row"><td colspan="4">Total (${f.length} item${f.length!==1?'s':''})</td><td style="text-align:right;color:var(--amount-color)">₹${total.toLocaleString('en-IN',{maximumFractionDigits:2})}</td><td></td></tr></tfoot>
   </table></div>`;
-  container.querySelectorAll('.delete-btn').forEach(btn=>btn.addEventListener('click',()=>deleteExpense(btn.dataset.id)));
+  c.querySelectorAll('.delete-btn').forEach(btn=>btn.addEventListener('click',()=>deleteExpense(btn.dataset.id)));
 }
-
 async function deleteExpense(id) {
-  if(!confirm('Delete this expense?')) return;
+  if (!confirm('Delete this expense?')) return;
   const before=expenses.slice();
   expenses=expenses.filter(e=>String(e.id)!==String(id));
   renderRecords();
   const ok=await DB.deleteExpense(id);
-  if(!ok){ expenses=before; renderRecords(); showToast('Delete failed.',true); }
+  if (!ok) { expenses=before; renderRecords(); showToast('Delete failed.',true); }
 }
 
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    REPORTS
-══════════════════════════════ */
-function sumByPeriod(period) {
-  const now=new Date(), today=now.toISOString().split('T')[0];
+══════════════════════════════════════════════════════ */
+function sumP(period) {
+  const now=new Date(),today=now.toISOString().split('T')[0];
   return expenses.filter(e=>{
-    if(period==='today') return e.date===today;
-    if(period==='week'){ const s=new Date(now);s.setDate(now.getDate()-6);s.setHours(0,0,0,0);return new Date(e.ts)>=s; }
-    if(period==='month'){ const ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');return e.date.startsWith(ym); }
-    if(period==='year') return e.date.startsWith(''+now.getFullYear());
+    if(period==='today')return e.date===today;
+    if(period==='week'){const s=new Date(now);s.setDate(now.getDate()-6);s.setHours(0,0,0,0);return new Date(e.ts)>=s;}
+    if(period==='month'){const ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');return e.date.startsWith(ym);}
+    if(period==='year')return e.date.startsWith(''+now.getFullYear());
     return false;
   }).reduce((s,e)=>s+e.amount,0);
 }
-
-function renderSummary() {
-  ['today','week','month','year'].forEach(p=>{
-    const el=document.getElementById('s-'+p); if(el) el.textContent='₹'+Math.round(sumByPeriod(p)).toLocaleString('en-IN');
-  });
-}
-
-function getChartData() {
-  const view=document.getElementById('chart-view').value, now=new Date();
-  if(view==='daily'){
-    const labels=[],data=[];
-    for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);const key=d.toISOString().split('T')[0];labels.push(d.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit'}));data.push(expenses.filter(e=>e.date===key).reduce((s,e)=>s+e.amount,0));}
-    return{labels,data};
-  }
-  if(view==='weekly'){
-    const labels=[],data=[];
-    for(let i=7;i>=0;i--){const end=new Date(now);end.setDate(now.getDate()-i*7);end.setHours(23,59,59,999);const start=new Date(now);start.setDate(now.getDate()-i*7-6);start.setHours(0,0,0,0);labels.push(start.toLocaleDateString('en-IN',{day:'2-digit',month:'short'}));data.push(expenses.filter(e=>{const d=new Date(e.ts);return d>=start&&d<=end;}).reduce((s,e)=>s+e.amount,0));}
-    return{labels,data};
-  }
+function renderSummary(){['today','week','month','year'].forEach(p=>{const el=document.getElementById('s-'+p);if(el)el.textContent='₹'+Math.round(sumP(p)).toLocaleString('en-IN');});}
+function getChartData(){
+  const view=document.getElementById('chart-view').value,now=new Date();
+  if(view==='daily'){const labels=[],data=[];for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);const key=d.toISOString().split('T')[0];labels.push(d.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit'}));data.push(expenses.filter(e=>e.date===key).reduce((s,e)=>s+e.amount,0));}return{labels,data};}
+  if(view==='weekly'){const labels=[],data=[];for(let i=7;i>=0;i--){const end=new Date(now);end.setDate(now.getDate()-i*7);end.setHours(23,59,59,999);const start=new Date(now);start.setDate(now.getDate()-i*7-6);start.setHours(0,0,0,0);labels.push(start.toLocaleDateString('en-IN',{day:'2-digit',month:'short'}));data.push(expenses.filter(e=>{const d=new Date(e.ts);return d>=start&&d<=end;}).reduce((s,e)=>s+e.amount,0));}return{labels,data};}
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],year=now.getFullYear();
   return{labels:months,data:months.map((_,m)=>{const key=year+'-'+String(m+1).padStart(2,'0');return expenses.filter(e=>e.date.startsWith(key)).reduce((s,e)=>s+e.amount,0);})};
 }
-
-function renderChart() {
-  const{labels,data}=getChartData();
-  const isDark=currentTheme==='dark';
-  const tickClr=isDark?'#6E6C66':'#888780', gridClr=isDark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.06)';
+function renderChart(){
+  const{labels,data}=getChartData(),isDark=currentTheme==='dark';
+  const tickClr=isDark?'#6E6C66':'#888780',gridClr=isDark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.06)';
   const ctx=document.getElementById('main-chart').getContext('2d');
-  if(chartInstance){chartInstance.destroy();chartInstance=null;}
-  chartInstance=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Expense (₹)',data,backgroundColor:'#1D9E7555',borderColor:'#1D9E75',borderWidth:1.5,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+Math.round(c.parsed.y).toLocaleString('en-IN')}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:tickClr,maxRotation:45}},y:{grid:{color:gridClr},ticks:{font:{size:10},color:tickClr,callback:v=>'₹'+Math.round(v).toLocaleString('en-IN')},beginAtZero:true}}}});
+  if(chartInst){chartInst.destroy();chartInst=null;}
+  chartInst=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Expense (₹)',data,backgroundColor:'#1D9E7555',borderColor:'#1D9E75',borderWidth:1.5,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+Math.round(c.parsed.y).toLocaleString('en-IN')}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:tickClr,maxRotation:45}},y:{grid:{color:gridClr},ticks:{font:{size:10},color:tickClr,callback:v=>'₹'+Math.round(v).toLocaleString('en-IN')},beginAtZero:true}}}});
 }
-
-function renderCatBreakdown() {
+function renderCatBreakdown(){
   const cats={};expenses.forEach(e=>{cats[e.category]=(cats[e.category]||0)+e.amount;});
-  const total=Object.values(cats).reduce((a,b)=>a+b,0);
-  const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+  const total=Object.values(cats).reduce((a,b)=>a+b,0),sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
   const el=document.getElementById('cat-breakdown');
   if(!sorted.length){el.innerHTML='<div style="font-size:13px;color:var(--text-secondary)">Add expenses to see breakdown</div>';return;}
   el.innerHTML=sorted.map(([cat,amt])=>{const pct=total?Math.round(amt/total*100):0;return`<div class="cat-bar-row"><div class="cat-bar-label">${esc(cat)}</div><div class="cat-bar-track"><div class="cat-bar-fill" style="width:${pct}%;background:${CAT_COLORS[cat]||'#888'}"></div></div><div class="cat-bar-amt">₹${Math.round(amt).toLocaleString('en-IN')}</div></div>`;}).join('');
 }
 
-/* ══════════════════════════════
+/* ══════════════════════════════════════════════════════
    BOOT
-══════════════════════════════ */
-loadTheme();
+   1. Init storage adapter (probe window.storage)
+   2. Load theme
+   3. Check saved session → auto-login if valid
+   4. Otherwise show login screen
+══════════════════════════════════════════════════════ */
+(async () => {
+  await _initStore();
+  await loadTheme();
+  refreshUsersList(); /* load in background, no await */
 
-/* onAuthStateChange fires with event='INITIAL_SESSION' on first load —
-   this is the single source of truth for session restore on reload.
-   We no longer call getSession() separately, which avoids the race
-   where both paths call onSession() and double-trigger fetchExpenses. */
-let _booted = false;
-DB.onAuthChange(async (session) => {
-  /* Guard: only let onSession run once per actual state change.
-     Supabase may fire multiple events on load; we deduplicate by
-     checking whether the user id actually changed. */
-  const incomingId = session?.user?.id ?? null;
-  const currentId  = currentUser?.id ?? null;
-  if (_booted && incomingId === currentId) return;
-  _booted = true;
-  await onSession(session);
-});
-
-/* Safety fallback: if onAuthChange never fires within 4 s
-   (e.g. network offline, storage adapter slow), stop the spinner
-   and show the login screen so the user isn't stuck loading forever. */
-setTimeout(() => {
-  if (!_booted) {
-    _booted = true;
-    onSession(null);
+  const sessionRaw = await storeGet('expsaver-session');
+  if (sessionRaw) {
+    try {
+      const user = JSON.parse(sessionRaw);
+      /* Verify user still exists in DB */
+      const dbUser = await DB.getUser(user.username);
+      if (dbUser && dbUser.id === user.id) {
+        await loginUser({ id: dbUser.id, username: dbUser.username });
+        return;
+      }
+    } catch {}
+    /* Session invalid — clear it */
+    await storeDel('expsaver-session');
   }
-}, 4000);
 
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'block';
+})();
 </script>
