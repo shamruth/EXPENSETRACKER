@@ -269,14 +269,29 @@ const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsIn
 async function sbFetch(method, path, body) {
   const opts = {
     method,
-    headers: { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + SB_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=representation' }
+    headers: {
+      'apikey': SB_ANON,
+      'Authorization': 'Bearer ' + SB_ANON,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation'
+    }
   };
   if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(SB_URL + '/rest/v1/' + path, opts);
+  let res;
+  try {
+    res = await fetch(SB_URL + '/rest/v1/' + path, opts);
+  } catch(netErr) {
+    console.error('[sbFetch] Network/CORS error:', method, path, netErr.message);
+    throw new Error('Cannot reach database. If running locally, open via a server (not file://). Error: ' + netErr.message);
+  }
   const text = await res.text();
   let data = null;
   try { data = text ? JSON.parse(text) : null; } catch { data = text; }
-  if (!res.ok) throw new Error((data?.message || data?.error || text || res.status));
+  if (!res.ok) {
+    const msg = data?.message || data?.error || data?.hint || text || res.status;
+    console.error('[sbFetch] HTTP error:', method, path, res.status, msg);
+    throw new Error(String(msg));
+  }
   return data;
 }
 
@@ -578,7 +593,7 @@ async function addExpense() {
   const btn = document.getElementById('add-expense-btn'); btn.disabled=true;
   const saved = await DB.insertExpense(currentUser.id, {name,amount,desc,category:selectedCat,date,time,dateLabel,ts,isPast});
   btn.disabled=false;
-  if (!saved) { showToast('Save failed — check connection.',true); return; }
+  if (!saved) { showToast('Save failed — open browser console (F12) for details.',true); return; }
   expenses.unshift(saved);
   document.getElementById('item-name').value='';
   document.getElementById('item-amount').value='';
